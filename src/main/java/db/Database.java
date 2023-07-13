@@ -1,3 +1,5 @@
+package db;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,10 +13,10 @@ import lombok.Setter;
 @Setter
 public class Database {
     private static Database DATABASE = new Database();
-    private String url;
+    private static String url;
     private String login;
     private String password;
-    private Connection connection;
+    private static Connection connection;
 
     private Database() {
         Properties props = new Properties();
@@ -36,7 +38,20 @@ public class Database {
         return DATABASE;
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
+
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = DriverManager.getConnection(url);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Connection failed.", e);
+        }
         return connection;
+
+    }
+
+    public String getUrl() {
+        return url;
     }
 }
