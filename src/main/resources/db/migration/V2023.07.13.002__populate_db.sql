@@ -11,13 +11,13 @@ VALUES
 (9, 'worker9', '1981-10-10', 'Trainee', 1000),
 (10, 'worker10', '1999-11-11', 'Junior', 2000);
 
-INSERT INTO client (id, name)
+INSERT INTO client (name)
 VALUES
-(1, 'client1'),
-(2, 'client2'),
-(3, 'client3'),
-(4, 'client4'),
-(5, 'client5');
+('client1'),
+('client2'),
+('client3'),
+('client4'),
+('client5');
 
 INSERT INTO project (id, client_id, start_date, finish_date)
 VALUES
